@@ -79,7 +79,7 @@ def run_stress_test(api_url, use_proxies=False, dynamic_proxies=None):
 def menu():
     clear()
     print(f"{GREEN}{BOLD}+{'='*35}+")
-    print(f"|{' API STRESS TOOL v2.1 ':^35}|")
+    print(f"|{' API MASTER ATTACK TOOL V1.1 ':^35}|")
     print(f"+{'='*35}+{RESET}")
     print(f"{RED}╼ DEVELOPED BY THE DARK OF MASTER☠︎{RESET}\n")
     print(f"{CYAN}> ENTER 1 TO ATTACK ON API")
