@@ -82,7 +82,7 @@ def menu():
     print(f"|{' API MASTER ATTACK TOOL V1.1 ':^35}|")
     print(f"+{'='*35}+{RESET}")
     print(f"{RED}╼ DEVELOPED BY THE DARK OF MASTER☠︎{RESET}\n")
-    print(f"{CYAN}> ENTER 1 TO ATTACK ON API")
+    print(f"{GREEN}> ENTER 1 TO ATTACK ON API")
     print("> ENTER 2 TO ATTACK API WITH PROXY")
     print("> ENTER 3 TO GET MORE TOOLS & JOIN US")
     print("> ENTER 4 TO EXIT TOOL{RESET}")
