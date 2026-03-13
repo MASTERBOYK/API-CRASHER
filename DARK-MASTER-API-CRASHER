@@ -81,8 +81,7 @@ def menu():
     print(f"{GREEN}{BOLD}+{'='*35}+")
     print(f"|{' API MASTER CRASH TOOL v1.1 ':^35}|")
     print(f"+{'='*35}+{RESET}")
-    print(f"{RED}╼ DEVELOPED BY THE DARK OF MASTER☠︎
-    > THIS TOOL IS VERY POWERFUL BY DARK MASTER{RESET}\n")
+    print(f"{RED}╼ DEVELOPED BY THE DARK OF MASTER☠︎{RESET}\n")
     print(f"{CYAN}> ENTER 1 TO ATTACK ON API")
     print("> ENTER 2 TO ATTACK API WITH PROXY")
     print("> ENTER 3 TO GET MORE TOOLS & JOIN US")
