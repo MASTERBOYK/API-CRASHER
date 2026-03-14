@@ -13,6 +13,7 @@ CYAN = '\033[96m'
 WHITE = '\033[97m'
 RESET = '\033[0m'
 BOLD = '\033[1m'
+DARK_GRAY = '\033[90m'
 
 # 📋 User-Agents
 USER_AGENTS = [
@@ -33,9 +34,32 @@ success_count = 0
 failed_count = 0
 lock = threading.Lock()
 
+# 🖥 Utility functions
 def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
+def hacker_logo():
+    logo = f"""
+{DARK_GRAY}{BOLD}
+██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗ 
+██║ ██╔╝██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗
+█████╔╝ ███████║██║     █████╔╝ █████╗  ██████╔╝
+██╔═██╗ ██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗
+██║  ██╗██║  ██║╚██████╗██║  ██╗███████╗██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+{RESET}
+"""
+    print(logo)
+
+def loading_bar(message="Fetching Data", duration=2):
+    print(f"\n{CYAN}{message}...{RESET}")
+    for i in range(0, 101, 5):
+        time.sleep(duration / 20)
+        sys.stdout.write(f"\r{GREEN}[{'#'* (i//5)}{'-'*(20-i//5)}] {i}%{RESET}")
+        sys.stdout.flush()
+    print("\n")
+
+# 🌐 Core functions
 def send_request(i, api_url, proxies=None):
     global success_count, failed_count
     try:
@@ -57,6 +81,7 @@ def run_stress_test(api_url, use_proxies=False, dynamic_proxies=None):
     global success_count, failed_count
     success_count = 0
     failed_count = 0
+    loading_bar("Initializing Attack", 1.5)
     print(f"\n{RED}♋︎ Sending {TOTAL_REQUESTS} requests to API: {api_url}{RESET}\n")
     threads = []
     for i in range(1, TOTAL_REQUESTS + 1):
@@ -73,11 +98,14 @@ def run_stress_test(api_url, use_proxies=False, dynamic_proxies=None):
     for t in threads:
         t.join()
 
+    loading_bar("Finalizing Attack", 1)
     print(f"\n{GREEN}✔ Done!{RESET}")
     print(f"{RED}✔ Success: {success_count} | ✘ Failed: {failed_count}{RESET}")
 
+# 📜 Menu
 def menu():
     clear()
+    hacker_logo()
     print(f"{GREEN}{BOLD}+{'='*35}+")
     print(f"|{' API MASTER ATTACK TOOL V1.1 ':^35}|")
     print(f"+{'='*35}+{RESET}")
@@ -89,6 +117,7 @@ def menu():
     choice = input(f"\n{RED}ENTER OPTION (1/2/3/4): {RESET}")
     return choice
 
+# 🟢 Main
 if __name__ == "__main__":
     while True:
         user_choice = menu()
@@ -99,7 +128,7 @@ if __name__ == "__main__":
         elif user_choice == "2":
             api_url = input(f"\n{RED}> 🔗 ENTER API URL: {RESET}").strip()
             print(f"{GREEN}> ♲︎ ENTER YOUR PROXY LIST (one per line)")
-            print("> ✍ PAST API LIST AND PRESS ENTER 2 TIMES")
+            print("> ✍ PASTE PROXIES AND PRESS ENTER 2 TIMES")
             proxy_lines = []
             while True:
                 line = input()
@@ -113,8 +142,7 @@ if __name__ == "__main__":
                 run_stress_test(api_url, use_proxies=True, dynamic_proxies=dynamic_proxies)
             input(f"\n{GREEN}⌧ Press Enter to return to menu...{RESET}")
         elif user_choice == "3":
-            print(f"{GREEN}\nLoadingl...{RESET}")
-            time.sleep(1)
+            loading_bar("Opening Channel", 1)
             url = "https://whatsapp.com/channel/0029VbAsHR3EquiQSTbSZw2z"
             try:
                 if sys.platform.startswith("win"):
@@ -134,4 +162,3 @@ if __name__ == "__main__":
         else:
             print(f"{RED}✘ Invalid option! Please select 1, 2, 3, or 4.{RESET}")
             time.sleep(1)
-            
